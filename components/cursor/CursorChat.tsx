@@ -1,7 +1,12 @@
 import { CursorChatProps, CursorMode } from "@/types/type";
 import CursorSVG from "@/public/assets/CursorSVG";
 
-const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: CursorChatProps) => {
+const CursorChat = ({
+  cursor,
+  cursorState,
+  setCursorState,
+  updateMyPresence,
+}: CursorChatProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: e.target.value });
     setCursorState({
@@ -31,8 +36,7 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
       className="absolute top-0 left-0"
       style={{
         transform: `translateX(${cursor.x}px) translateY(${cursor.y}px)`,
-      }}
-    >
+      }}>
       {cursorState.mode === CursorMode.Chat && (
         <>
           <CursorSVG color="#000" />
@@ -42,9 +46,10 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
             onKeyUp={(e) => e.stopPropagation()}
             style={{
               borderRadius: 20,
-            }}
-          >
-            {cursorState.previousMessage && <div>{cursorState.previousMessage}</div>}
+            }}>
+            {cursorState.previousMessage && (
+              <div>{cursorState.previousMessage}</div>
+            )}
             <input
               className="z-10 w-60 border-none	bg-transparent text-white placeholder-blue-300 outline-none"
               autoFocus={true}
